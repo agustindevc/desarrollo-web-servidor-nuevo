@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-    DEFINE("PI", 3.14); //DEFINICION DE VARIABLES CONSTANTES
+    DEFINE("PI", 3.14); //DEFINICION DE VARIABLES CONSTANTES..
 
     echo"<h1>PI vale ". PI ."</h1>";
     $mensaje = "hola mundo";
