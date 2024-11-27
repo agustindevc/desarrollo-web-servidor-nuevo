@@ -15,7 +15,7 @@
         if(isset($_SESSION["usuario"])){
             echo"<h2>Bienvenido " . $_SESSION["usuario"] . "</h2>";
         } else {
-            header("location: usuario/iniciar_sesion.php"); //averiguar bien que hace este codigo
+            //header("location: usuario/iniciar_sesion.php"); //averiguar bien que hace este codigo
             exit;
         }
     ?>
