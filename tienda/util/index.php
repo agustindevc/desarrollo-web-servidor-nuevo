@@ -11,23 +11,33 @@
 
         require('../util/conexion.php');
 
-        //Controlo que la sesion este iniciada.
-        session_start();
-        if(isset($_SESSION["usuario"])) {
-            echo "<h2>Bienvenid@ " . $_SESSION["usuario"] . "</h2>";
-        }else{
-            header("location: usuario/iniciar_sesion.php");
-            exit;
-        }
+
+        
     ?>
 </head>
 <body>
-    <div class="container">
+    <?php
+        session_start();
+        if(isset($_SESSION["usuario"])) {
+            echo "<h2>Bienvenid@ " . $_SESSION["usuario"] . "</h2>";
+            ?>
+            
+            <!--Botones de la pagina-->
 
-    <!--Botones de la pagina-->
-        <a class="btn btn-warning" href="../usuario/cerrar_sesion.php">Cerrar sesión</a>
-        <a class="btn btn-warning" href="../util/index.php">volver</a>
-        <a class= "btn btn-secondary" href="nuevo_producto.php">Nuevo Producto</a>
+            <a class="btn btn-warning" href="../productos/index.php">Productos</a>
+            <a class="btn btn-warning" href="../categorias/index.php">Categorias</a>
+            <a class="btn btn-warning" href="../usuario/cambiar_credenciales.php">Cambiar contraseña</a>
+            <a class="btn btn-warning" href="../usuario/cerrar_sesion.php">Cerrar sesión</a>
+        <?php    
+        }else{
+        ?>    
+            <a class="btn btn-warning" href="../usuario/iniciar_sesion.php">Iniciar Sesion</a>
+        
+            <body>
+        <div class="container">
+
+        <!--Botones de la pagina-->
+        
         <h1>Tabla de productos</h1>
 
         <?php
@@ -67,19 +77,7 @@
                             <img width ="100" height="200" src ="<?php echo $fila["imagen"] ?>"> <!--Muestro la imagen en la tabla-->
                         </td>
                         <?php
-                        echo "<td>" . $fila["descripcion"] . "</td>";
-                        ?>
-                        <td>
-                            <a class="btn btn-primary"
-                                href="editar_producto.php?id_producto=<?php echo $fila["id_producto"]?>">Editar Producto</a> <!--Creamos el boton con el enlace en ese formato, y le pasamos el id del producto a editar-->                   
-                        </td>
-                        <td>
-                            <Form action="" method="post">
-                                <input type="hidden" name="id_producto" value="<?php echo $fila["id_producto"] ?>"> <!--toma el id_producto de la base de datos-->
-                                <input class="btn btn-danger" type="submit" value="Borrar">
-                            </Form>
-                        </td>
-                        <?php
+                        echo "<td>" . $fila["descripcion"] . "</td>"; 
                         echo "</tr>";
                     }
                 ?>
@@ -90,3 +88,5 @@
     </div>
 </body>
 </html>
+<?php } ?>
+

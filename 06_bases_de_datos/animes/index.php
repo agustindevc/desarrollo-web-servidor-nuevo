@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Index de Animes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <?php
         error_reporting( E_ALL );
-        ini_set( "display_errors", 1 );    
+        ini_set("display_errors", 1 );    
 
         require('conexion.php');
 
-        session_start(); //colocamos esto para recuperar la sesion
-        if(isset($_SESSION["usuario"])){
-            echo"<h2>Bienvenido " . $_SESSION["usuario"] . "</h2>";
-        } else {
-            //header("location: usuario/iniciar_sesion.php"); //averiguar bien que hace este codigo
+        session_start();
+        if(isset($_SESSION["usuario"])) {
+            echo "<h2>Bienvenid@ " . $_SESSION["usuario"] . "</h2>";
+        }else{
+            header("location: usuario/iniciar_sesion.php");
             exit;
         }
     ?>
-    
 </head>
 <body>
     <div class="container">
