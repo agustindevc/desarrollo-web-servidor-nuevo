@@ -31,7 +31,7 @@
         if($_SERVER["REQUEST_METHOD"] == "POST") {
             $tmp_nombre = $_POST["nombre"];
             $tmp_precio = $_POST["precio"];
-            $tmp_categoria = $_POST["categoria"];
+            $tmp_categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : ""; //Utilizpo el operador ternario (si el campo fue enviado devuelve su valor, sino lo asigna vacio)
             $tmp_stock = $_POST["stock"];
             $nombre_imagen = $_FILES["imagen"]["name"];
             $ubicacion_temporal = $_FILES["imagen"]["tmp_name"];
@@ -67,9 +67,9 @@
                 $err_precio = "El precio del producto es obligatorio.";
             } else {
                 //Compruebo que el formato sea el correcto.
-                $patron = "/^(\d{1,6}(\.\d{1,2})?)$/";
+                $patron = "/^(\d{1,4}(\.\d{1,2})?)$/";
                 if(!preg_match($patron, $tmp_precio)){
-                    $err_precio = "El precio debe ser minimo 0 y maximo 999999,99 y tiene que ser un numero.";
+                    $err_precio = "El precio debe ser minimo 0 y maximo 9999,99 y tiene que ser un numero.";
                 }else{
                     //Si todo es correcto, asigno el valor a la variable final.
                     $precio = $tmp_precio;   
@@ -136,7 +136,7 @@
             <div class="mb-3">
                 <label class="form-label">Categoría</label>
                 <select class="form-select" name="categoria">
-                    <option selected disabled hidden>--- Elige la categoria ---</option>
+                    <option value="" selected disabled hidden>--- Elige la categoria ---</option>
                     <?php
                     foreach($categorias as $categoria) { ?>
                         <option value="<?php echo $categoria ?>">

@@ -36,7 +36,11 @@
                 $categoria = $_POST["categoria"]; 
                 
                 $sql = "DELETE FROM categorias WHERE categoria = '$categoria'";
-                $_conexion ->query($sql);
+                if ($_conexion->query($sql)) {
+                    echo "<p class='text-success'>Categoría eliminada correctamente.</p>";
+                } else {
+                    echo "<p class='text-danger'>Error al eliminar la categoría.</p>";
+                }
             }
 
             //Obtengo los datos de las categorias actuales de la base de datos para poder mostrarlos
